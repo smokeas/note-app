@@ -9,7 +9,7 @@ cd note-app
 go mod init note-app
 
 Шаг 2. Установка зависимостей
-go get github.com/spf13/viper
+go get github.com/spf13/viper!
 
 Эта команда:
 
@@ -37,3 +37,11 @@ go run cmd/app/main.go
 http://localhost:8080/register
 http://localhost:8080/login
 Должны отобразиться соответствующие надписи.
+
+
+
+
+cd D:\note-app
+docker compose -f "docker\docker-compose.yml" up -d
+
+go run cmd/app/main.go

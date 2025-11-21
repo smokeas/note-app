@@ -32,7 +32,7 @@ import (
 		w.Write([]byte("Форма входа"))
 	}
 */
-package api
+package apis
 
 import (
 	"net/http"
