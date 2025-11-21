@@ -38,9 +38,6 @@ http://localhost:8080/register
 http://localhost:8080/login
 Должны отобразиться соответствующие надписи.
 
-
-
-
 cd D:\note-app
 docker compose -f "docker\docker-compose.yml" up -d
 
