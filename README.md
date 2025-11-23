@@ -9,7 +9,7 @@ cd note-app
 go mod init note-app
 
 Шаг 2. Установка зависимостей
-go get github.com/spf13/viper!
+go get github.com/spf13/viper
 
 Эта команда:
 
