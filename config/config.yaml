@@ -1,6 +1,9 @@
 server:
-  port: "8080" 
-  url: "postgres://user:pass@localhost:5432/noteapp?sslmode=disable" 
-redis:
-  addr: "localhost:6379"
-  secret: "super-secret-key" 
+  port: "8080"
+
+database:
+  dsn: "postgres://postgres:secret@localhost:5432/noteapp?sslmode=disable"
+
+jwt:
+  secret: "very_secret_jwt_key"
+  ttl_minutes: 60

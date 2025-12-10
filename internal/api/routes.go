@@ -1,17 +1,21 @@
 package api
 
 import (
-	"net/http"
+ "net/http"
+ "time"
+
+ "note-app/internal/api/handlers"
+ "note-app/internal/service"
 )
 
-// StartServer запускает HTTP-сервер на указанном порту
-// Оборачиваем ОБработчики в middleware для логирования/авторизации и т.д.
-func StartServer(port string) {
-	http.Handle("/register", LoggingMiddleware(http.HandlerFunc(registerHandler)))
-	http.Handle("/login", LoggingMiddleware(http.HandlerFunc(loginHandler)))
+func RegisterRoutes(userService *service.UserService, jwtSecret string, jwtTTL time.Duration) {
+ authHandler := handlers.NewAuthHandler(userService, jwtSecret, jwtTTL)
 
-	// Слушаем на всех интерфейсах (0.0.0.0) и на указанном порту
-	// В реальном приложении лучше обработать ошибку:
-	//    if err := http.ListenAndServe("0.0.0.0:"+port, nil); err != nil { log.Fatal(err) }
-	_ = http.ListenAndServe("0.0.0.0:"+port, nil) //nil — список правил
+ http.HandleFunc("/register", authHandler.Register)
+ http.HandleFunc("/login", authHandler.Login)
+
+ // пример защищённого эндпоинта:
+ // http.Handle("/me", middleware.AuthMiddleware(jwtSecret)(http.HandlerFunc(meHandler)))
 }
+
+
